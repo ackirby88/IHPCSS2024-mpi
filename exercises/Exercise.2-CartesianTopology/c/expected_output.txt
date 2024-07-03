@@ -1,0 +1,20 @@
+Rank[ 0]	 (0,0) - [w]: -2, [e]:  2, [n]: -2, [s]:  1  
+Rank[ 4]	 (0,2) - [w]:  2, [e]:  6, [n]: -2, [s]:  5  
+Rank[ 1]	 (1,0) - [w]: -2, [e]:  3, [n]:  0, [s]: -2  
+Rank[ 3]	 (1,1) - [w]:  1, [e]:  5, [n]:  2, [s]: -2  
+Rank[ 2]	 (0,1) - [w]:  0, [e]:  4, [n]: -2, [s]:  3  
+Rank[ 6]	 (0,3) - [w]:  4, [e]: -2, [n]: -2, [s]:  7  
+Rank[ 5]	 (1,2) - [w]:  3, [e]:  7, [n]:  4, [s]: -2  
+Rank[ 7]	 (1,3) - [w]:  5, [e]: -2, [n]:  6, [s]: -2  
+Outputting state: 0
+Outputting state: 1000
+Outputting state: 2000
+Outputting state: 3000
+Outputting state: 4000
+Outputting state: 5000
+Outputting state: 6000
+Outputting state: 7000
+Outputting state: 8000
+Outputting state: 9000
+Outputting state: 9999
+[0] last heat: 31217.769192 time: 3.357522

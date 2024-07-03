@@ -1,0 +1,7 @@
+
+Solutions Locations: 
+  cd Exercise-1.DerivedDataTypes/.soln
+  cd Exercise.2-CartesianTopology/.soln
+  cd Exercise.3-GraphTopology/.soln
+  cd Exercise.4-NeighborhoodCollectives/.soln
+  cd Exercise.5-METISi (no solutions necessary)

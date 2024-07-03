@@ -1,0 +1,18 @@
+In this exercise, we will simply examine how the METIS API is used.
+
+    Step 1: Build the METIS Library
+	./build-metis.sh
+
+    Step 2: Go to either the demo directories
+	cd demo.1.box
+	cd demo.2.box
+
+    Step 3: Build the demo program
+	make
+
+    Step 4: Run the program
+	./MetisDemo
+
+    Step 5: Visualize the VTK output
+	Use VisIt to open the *.vtk files.
+	Look at the mesh and the Partition_ID variable.
