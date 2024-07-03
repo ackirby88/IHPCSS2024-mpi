@@ -1,0 +1,16 @@
+Rank: 0 on r002.ib.bridges2.psc.edu, Rank reordered: 0 
+Rank: 1 on r002.ib.bridges2.psc.edu, Rank reordered: 1 
+IN-Degree:2 OUT-Degree:2 weight:1
+IN-Edges: 3 (wght:1), 3 (wght:1), 
+ OUT-Edges: 3 (wght:1), 3 (wght:1), 
+Rank: 2 on r002.ib.bridges2.psc.edu, Rank reordered: 2 
+IN-Degree:2 OUT-Degree:2 weight:1
+IN-Edges: 0 (wght:1), 0 (wght:1), 
+ OUT-Edges: 0 (wght:1), 0 (wght:1), 
+Rank: 3 on r002.ib.bridges2.psc.edu, Rank reordered: 3 
+IN-Degree:2 OUT-Degree:2 weight:1
+IN-Edges: 1 (wght:1), 1 (wght:1), 
+ OUT-Edges: 1 (wght:1), 1 (wght:1), 
+IN-Degree:2 OUT-Degree:2 weight:1
+IN-Edges: 2 (wght:1), 2 (wght:1), 
+ OUT-Edges: 2 (wght:1), 2 (wght:1), 
