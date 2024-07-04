@@ -30,24 +30,28 @@ int main(int argc, char *argv[]){
 
     //Hardcoding the edges: 0<->2, 1<->3
     if (rank == 0) {
+	// TODO: fill in destinations of node 0
         dest[0] = 2;
         dest[1] = 2;
         degree[0] = 1;
         degree[1] = 1;
     } else
     if (rank == 1) {
+	// TODO: fill in destinations of node 1
         dest[0] = 3;
         dest[1] = 3;
         degree[0] = 1;
         degree[1] = 1;
     } else
     if (rank == 2) {
+	// TODO: fill in destinations of node 2
         dest[0] = 0;
         dest[1] = 0;
         degree[0] = 1;
         degree[1] = 1;
     } else
     if (rank == 3) {
+	// TODO: fill in destinations of node 3
         dest[0] = 1;
         dest[1] = 1;
         degree[0] = 1;

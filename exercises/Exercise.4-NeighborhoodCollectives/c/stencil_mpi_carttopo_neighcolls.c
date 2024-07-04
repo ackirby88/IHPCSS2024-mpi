@@ -128,14 +128,14 @@ int main(int argc, char **argv) {
      *        request
      *            communication request (handle)
      */
-    // TODO: fillout 'counts' array: number of elements to send to each neighbor
+    // TODO: fillout 'counts' array: how much elements of data are we sending to each neighbor (hint: look at the packing of sbuf above)
     int counts[4] = {//TODO, //TODO, //TODO, //TODO};
-    // TODO: fillout 'displs' array: entry j specifies the displacement (relative to sendbuf) from which to send the outgoing data to neighbor j
+    // TODO: fillout 'displs' array: What are the starting indexes of each "chunk" (hint: look at the packing of sbuf above)
     int displs[4] = {//TODO, //TODO, //TODO, //TODO};
 
     MPI_Request req;
     MPI_Status status;
-    // TODO: perform neighborhood collective call (counts serves for both sendcounts and recvcounts; displs serves for both sdispls and rdispls)
+    // TODO: perform nonblocking neighborhood collective call (note: counts serves for both sendcounts and recvcounts; displs serves for both sdispls and rdispls)
     
     MPI_Wait(&req, &status);
     /* ===================================================================== */

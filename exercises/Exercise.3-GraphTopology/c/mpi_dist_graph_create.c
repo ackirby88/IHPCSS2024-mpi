@@ -30,26 +30,30 @@ int main(int argc, char *argv[]){
 
     //Hardcoding the edges: 0<->2, 1<->3
     if (rank == 0) {
-        dest[0] = 2;
-        dest[1] = 2;
+	// TODO: fill in destinations of node 0
+        dest[0] = //TODO;
+        dest[1] = //TODO;
         degree[0] = 1;
         degree[1] = 1;
     } else
     if (rank == 1) {
-        dest[0] = 3;
-        dest[1] = 3;
+	// TODO: fill in destinations of node 1
+        dest[0] = //TODO;
+        dest[1] = //TODO;
         degree[0] = 1;
         degree[1] = 1;
     } else
     if (rank == 2) {
-        dest[0] = 0;
-        dest[1] = 0;
+	// TODO: fill in destinations of node 2
+        dest[0] = //TODO;
+        dest[1] = //TODO;
         degree[0] = 1;
         degree[1] = 1;
     } else
     if (rank == 3) {
-        dest[0] = 1;
-        dest[1] = 1;
+	// TODO: fill in destinations of node 3
+        dest[0] = //TODO;
+        dest[1] = //TODO;
         degree[0] = 1;
         degree[1] = 1;
     }
@@ -150,7 +154,7 @@ int main(int argc, char *argv[]){
      */
     int inD, outD, wei;
     // TODO: get the number of graph neighbors (store in variables: inD, outD, wei)
-    
+    MPI_Dist_graph_neighbors_count(graph_comm, &inD, &outD, &wei);
     printf("IN-Degree:%d OUT-Degree:%d weight:%d\n",inD,outD,wei);
 
     // allocating the source and destination arrays based on counts
@@ -160,7 +164,7 @@ int main(int argc, char *argv[]){
     int* DestW = (int*) malloc(sizeof(int)*outD);
 
     // TODO: get the graph neighbors
-    
+    MPI_Dist_graph_neighbors(graph_comm, inD, Sour, SourW, outD, Dest, DestW);
     /* ===================================================================== */
     
     printf("IN-Edges: ");
