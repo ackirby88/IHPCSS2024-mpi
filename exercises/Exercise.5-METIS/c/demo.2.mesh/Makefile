@@ -35,5 +35,5 @@ main.o: main.cxx
 	@echo "  >> main.cxx changed! Recompiled!\n"
 
 clean:
-	rm *.o *.vtk $(EXE)
+	rm *.o *.vtu $(EXE)
 	@echo "  >> Removed *.o files!\n"

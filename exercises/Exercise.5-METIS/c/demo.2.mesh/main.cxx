@@ -82,51 +82,68 @@ void readMesh(const std::string filename,Mesh &mesh){
         mesh.elems[i].nodes[2] = n2 - 1;
    }
 }
-
-// Function to write mesh in VTK format
-void writeMeshVTK(const std::string filename,
+void writeMeshVTK(const std::string& filename,
                   int numNodes, Node* nodes,
                   int numElems, Element* elems,
-                  idx_t* part) {
+                  int* part) {
     std::ofstream file(filename);
 
-    // Write VTK header
-    file << "# vtk DataFile Version 3.0" << std::endl;
-    file << "Partitioned Mesh Example" << std::endl;
-    file << "ASCII" << std::endl;
-    file << "DATASET UNSTRUCTURED_GRID" << std::endl;
-
-    // Write nodes
-    file << "POINTS " << numNodes << " double" << std::endl;
-    for (int i = 0; i < numNodes; ++i) {
-        file << nodes[i].x << " " << nodes[i].y << " 0.0" << std::endl; // Assuming 2D mesh (z=0.0)
+    if (!file) {
+        std::cerr << "Error: Unable to write VTK file " << filename << std::endl;
+        return;
     }
 
-    // Write elements
+    file << "<?xml version=\"1.0\"?>" << std::endl;
+    file << "<VTKFile type=\"UnstructuredGrid\" version=\"0.1\" byte_order=\"LittleEndian\">" << std::endl;
+    file << "  <UnstructuredGrid>" << std::endl;
+
+    // Write points (nodes)
+    file << "    <Piece NumberOfPoints=\"" << numNodes << "\" NumberOfCells=\"" << numElems << "\">" << std::endl;
+    file << "      <Points>" << std::endl;
+    file << "        <DataArray type=\"Float64\" NumberOfComponents=\"3\" format=\"ascii\">" << std::endl;
+    for (int i = 0; i < numNodes; ++i) {
+        file << "          " << nodes[i].x << " " << nodes[i].y << " 0.0" << std::endl; // Assuming 2D mesh (z=0.0)
+    }
+    file << "        </DataArray>" << std::endl;
+    file << "      </Points>" << std::endl;
+
+    // Write cells (elements)
     int totalNodes = 0;
     for (int i = 0; i < numElems; ++i) {
-        totalNodes += 1 + elems[i].nodes[2]; // Number of nodes in the current element
+        totalNodes += 3; // Assuming triangles have 3 nodes
     }
-    file << "CELLS " << numElems << " " << totalNodes << std::endl;
+    file << "      <Cells>" << std::endl;
+    file << "        <DataArray type=\"Int32\" Name=\"connectivity\" format=\"ascii\">" << std::endl;
     for (int i = 0; i < numElems; ++i) {
-        file << "3 "; // Three nodes per triangle (assuming triangles)
-        file << elems[i].nodes[0] << " " << elems[i].nodes[1] << " " << elems[i].nodes[2] << std::endl;
+        file << "          " << elems[i].nodes[0] << " " << elems[i].nodes[1] << " " << elems[i].nodes[2] << std::endl;
     }
-
-    // Write element types
-    file << "CELL_TYPES " << numElems << std::endl;
+    file << "        </DataArray>" << std::endl;
+    file << "        <DataArray type=\"Int32\" Name=\"offsets\" format=\"ascii\">" << std::endl;
+    int offset = 0;
     for (int i = 0; i < numElems; ++i) {
-        file << "5\n"; // VTK_TRIANGLE type
+        offset += 3; // Number of nodes per element (assuming triangles)
+        file << "          " << offset << std::endl;
     }
-    file << std::endl;
+    file << "        </DataArray>" << std::endl;
+    file << "        <DataArray type=\"UInt8\" Name=\"types\" format=\"ascii\">" << std::endl;
+    for (int i = 0; i < numElems; ++i) {
+        file << "          5" << std::endl; // VTK_TRIANGLE type (value 5)
+    }
+    file << "        </DataArray>" << std::endl;
+    file << "      </Cells>" << std::endl;
 
     // Write partition data as a scalar field
-    file << "CELL_DATA " << numElems << std::endl;
-    file << "SCALARS Partition_ID int 1" << std::endl;
-    file << "LOOKUP_TABLE default" << std::endl;
+    file << "      <CellData Scalars=\"scalars\">" << std::endl;
+    file << "        <DataArray type=\"Int32\" Name=\"Partition_ID\" format=\"ascii\">" << std::endl;
     for (int i = 0; i < numElems; ++i) {
-        file << part[i] << std::endl;
+        file << "          " << part[i] << std::endl;
     }
+    file << "        </DataArray>" << std::endl;
+    file << "      </CellData>" << std::endl;
+
+    file << "    </Piece>" << std::endl;
+    file << "  </UnstructuredGrid>" << std::endl;
+    file << "</VTKFile>" << std::endl;
 
     file.close();
     std::cout << "VTK File Written: " << filename << std::endl;
@@ -138,7 +155,7 @@ int main(int argc, char* argv[]) {
     int meshChoice = 1;
     int numPartitions = 2;
     std::string meshTag  = ".mesh";
-    std::string vtkTag   = ".vtk";
+    std::string vtkTag   = ".vtu";
 
     // read number of partitions requested
     if(argc <= 1) {
