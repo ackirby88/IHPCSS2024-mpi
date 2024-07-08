@@ -4,4 +4,4 @@ Solutions Locations:
   cd Exercise.2-CartesianTopology/.soln
   cd Exercise.3-GraphTopology/.soln
   cd Exercise.4-NeighborhoodCollectives/.soln
-  cd Exercise.5-METISi (no solutions necessary)
+  cd Exercise.5-METIS (no solutions necessary)
