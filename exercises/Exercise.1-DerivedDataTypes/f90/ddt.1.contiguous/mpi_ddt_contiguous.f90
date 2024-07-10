@@ -77,16 +77,18 @@ program contiguous
             !     comm
             !         communicator (handle)
             !
-            do i=0, numtasks-1
+            do i=1, numtasks-1
                 !  TODO: send each ROW i of the array 'a' using the derived data type.
-                
+            
             end do
+            ! fill b for rank 0
+            b = a(:,0)
             ! ===================================================================
         endif
 
         ! all tasks receive columntype data from task 0
         source = 0
-        call MPI_RECV(b, SIZE, MPI_REAL, source, tag, MPI_COMM_WORLD, stat, ierr)
+        if(rank /= 0) call MPI_RECV(b, SIZE, MPI_REAL, source, tag, MPI_COMM_WORLD, stat, ierr)
         print *, 'rank= ',rank,' b= ',b
     else
         print *, 'Must specify',SIZE,' processors.  Terminating.' 

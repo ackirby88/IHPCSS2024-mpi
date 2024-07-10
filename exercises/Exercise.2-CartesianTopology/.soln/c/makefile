@@ -67,6 +67,6 @@ $(EXEC): $(OBJS)
 # ----------------------------------------------
 clean:
 	@echo "*** Clean : removing object files    "
-	@( $(RM) *.o *.mod *~)
+	@( $(RM) *.o *.mod *~ WRK)
 	@( $(RM) $(EXEC))
 
